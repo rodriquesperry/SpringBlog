@@ -13,4 +13,10 @@ public class MathController {
     public String add(@PathVariable int num1, @PathVariable int num2) {
         return num1 + " plus " + num2 + " is " + (num1 + num2);
     }
+
+    @RequestMapping(path = "/subtract/{num1}/from/{num2}", method = RequestMethod.GET)
+    @ResponseBody
+    public String subtract(@PathVariable int num1, @PathVariable int num2) {
+        return num1 + " from " + num2 + " is " + (num2 - num1);
+    }
 }
