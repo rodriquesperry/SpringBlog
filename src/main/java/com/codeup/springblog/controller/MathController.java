@@ -25,4 +25,10 @@ public class MathController {
     public String multiply(@PathVariable int num1, @PathVariable int num2) {
         return num1 + " multiplied by " + num2 + " is " + (num1 * num2);
     }
+
+    @RequestMapping(path = "/divide/{num1}/by/{num2}")
+    @ResponseBody
+    public String divide(@PathVariable int num1, @PathVariable int num2) {
+        return num1 + " divided by " + num2 + " is " + (num1 / num2);
+    }
 }
