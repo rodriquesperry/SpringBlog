@@ -1,6 +1,7 @@
 package com.codeup.springblog.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,16 +12,11 @@ public class PostController {
 
 
     @GetMapping("/posts")
-    @ResponseBody
-    public String postIndex() {
-        return "Posts index page!";
-    }
+    public String postIndex() {return "posts/index";}
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
     public String postId(@PathVariable int id) {
-//        Post post = new Post();
-        return "View an individual post! with id of " + id;
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
