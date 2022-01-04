@@ -8,13 +8,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Controller
 public class PostController {
 
 
     @GetMapping("/posts")
-    public String postIndex() {
-
+    public String postIndex(Model model) {
+        List<Post> posts = new ArrayList<>(Arrays.asList(
+                new Post("First Array List Post", "Trying to finish up this exercise correctly"),
+                new Post("Second Array List Post", "THis is the second post for my arrayList"))
+        );
+        model.addAttribute("posts", posts);
         return "posts/index";
     }
 
