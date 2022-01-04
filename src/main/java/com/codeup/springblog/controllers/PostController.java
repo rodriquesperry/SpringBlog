@@ -1,5 +1,6 @@
 package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.daos.PostRepository;
 import com.codeup.springblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +16,19 @@ import java.util.List;
 @Controller
 public class PostController {
 
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
+    }
 
     @GetMapping("/posts")
     public String postIndex(Model model) {
-        List<Post> posts = new ArrayList<>(Arrays.asList(
-                new Post("First Array List Post", "Trying to finish up this exercise correctly"),
-                new Post("Second Array List Post", "THis is the second post for my arrayList"))
-        );
-        model.addAttribute("posts", posts);
+//        List<Post> posts = new ArrayList<>(Arrays.asList(
+//                new Post("First Array List Post", "Trying to finish up this exercise correctly"),
+//                new Post("Second Array List Post", "THis is the second post for my arrayList"))
+//        );
+        model.addAttribute("posts", postDao.findAll());
         return "posts/index";
     }
 
