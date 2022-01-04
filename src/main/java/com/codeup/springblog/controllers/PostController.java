@@ -1,5 +1,6 @@
-package com.codeup.springblog.controller;
+package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +13,15 @@ public class PostController {
 
 
     @GetMapping("/posts")
-    public String postIndex() {return "posts/index";}
+    public String postIndex() {
+
+        return "posts/index";
+    }
 
     @GetMapping("/posts/{id}")
-    public String postId(@PathVariable int id) {
+    public String postId(@PathVariable int id, Model model) {
+        Post post = new Post("post1", "This is the body");
+        model.addAttribute("post", post);
         return "posts/show";
     }
 
