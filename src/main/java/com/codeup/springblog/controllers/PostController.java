@@ -4,10 +4,7 @@ import com.codeup.springblog.daos.PostRepository;
 import com.codeup.springblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,10 +30,23 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public String postId(@PathVariable int id, Model model) {
+    public String postId(@PathVariable long id, Model model) {
 //        Post post = new Post("post1", "This is the body");
         model.addAttribute("post", postDao.findPostById(id));
         return "posts/show";
+    }
+
+    @PostMapping("posts/{id}/delete")
+    public String delete(@PathVariable long id) {
+        postDao.deleteById(id);
+        return "redirect:/posts";
+    }
+
+    @PostMapping("posts/{id}/edit")
+    public String edit(@PathVariable long id, @RequestParam(name = "title") Model model) {
+        model.addAttribute("post", postDao.findPostById());
+        postDao.findPostById(id);
+        return "redirect:/post/" + id;
     }
 
     @GetMapping("/posts/create")
