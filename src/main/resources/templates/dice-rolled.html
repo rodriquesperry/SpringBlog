@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dice Roll Results</title>
+</head>
+<body>
+    <div th:if="${n} == ${die}">
+        <h1>Congratulations You've Guessed Correctly!!</h1>
+    </div>
+    <div th:if="${n} != ${die}">
+        <h1>Sorry You've Guessed Incorrectly:(</h1>
+    </div>
+    <h2 th:text="${nSent}"></h2>
+    <h2 th:text="${dieSent}"></h2>
+</body>
+</html>
