@@ -26,10 +26,12 @@ public class PostController {
 //                new Post("Second Array List Post", "THis is the second post for my arrayList"))
 //        );
         model.addAttribute("posts", postDao.findAll());
+        //boolean value that checks if the database is empty (true or false)
+        model.addAttribute("hasPost", postDao.findAll().isEmpty());
         return "posts/index";
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping("posts/{id}")
     public String postId(@PathVariable long id, Model model) {
 //        Post post = new Post("post1", "This is the body");
         model.addAttribute("post", postDao.findPostById(id));

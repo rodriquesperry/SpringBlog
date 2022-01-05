@@ -6,22 +6,21 @@
 </head>
 <body>
     <div th:include="partials/navbar.html :: navbar"></div>
-    <h1>This is where we edit the post</h1>
-
-    <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="post">
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" id="title">
-        </div>
-        <div class="mb-3">
-            <label for="body">Body</label>
-            <textarea class="form-control" id="body" name="body"></textarea>
-            <div class="invalid-feedback">
-                Please update your post in the textarea.
+    <div class="container">
+        <h1>This is where we edit the post</h1>
+        <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="post">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="title" id="title" required>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+            <div class="mb-3">
+                <label for="body">Body</label>
+                <textarea class="form-control" id="body" name="body" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
 
 
 </body>
