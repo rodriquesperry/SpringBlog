@@ -8,7 +8,7 @@
     <div th:include="partials/navbar.html :: navbar"></div>
     <h1 th:text="${post.title}"></h1>
     <h3 th:text="${post.body}"></h3>
-    <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="post">
+    <form th:action="@{/posts/{id}/edit(id=${post.id})}">
         <button name="edit">Edit</button>
     </form>
     <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
