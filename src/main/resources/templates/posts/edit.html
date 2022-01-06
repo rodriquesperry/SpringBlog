@@ -15,7 +15,7 @@
             </div>
             <div class="mb-3">
                 <label for="body">Body</label>
-                <textarea class="form-control" id="body" name="body" required></textarea>
+                <textarea class="form-control" id="body" name="body" th:text="${postToEdit.getBody()}" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
