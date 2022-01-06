@@ -9,6 +9,7 @@
     <div class="container">
         <h2 th:text="${post.title}" class="title"></h2>
         <h4 th:text="${post.body}" class="postBody"></h4>
+        <p th:text="${post.getUser().getEmail()}"></p>
         <form th:action="@{/posts/{id}/edit(id=${post.id})}">
             <button name="edit">Edit</button>
         </form>
