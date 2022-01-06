@@ -7,8 +7,8 @@
 <body>
     <div th:include="partials/navbar.html :: navbar"></div>
     <div class="container">
-        <h2 th:text="${post.title}"></h2>
-        <h4 th:text="${post.body}"></h4>
+        <h2 th:text="${post.title}" class="title"></h2>
+        <h4 th:text="${post.body}" class="postBody"></h4>
         <form th:action="@{/posts/{id}/edit(id=${post.id})}">
             <button name="edit">Edit</button>
         </form>
@@ -19,6 +19,5 @@
             <button name="return" type="submit">Show All Posts</button>
         </form>
     </div>
-
 </body>
 </html>

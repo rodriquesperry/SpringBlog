@@ -47,6 +47,10 @@ public class PostController {
     @GetMapping("posts/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
         model.addAttribute("post", postDao.findPostById(id));
+        Post post = postDao.findPostById(id);
+        model.addAttribute("postToEdit", post);
+        System.out.println("post.getTitle() = " + post.getTitle());
+        System.out.println("post.getBody() = " + post.getBody());
         return "posts/edit";
     }
 
@@ -57,6 +61,7 @@ public class PostController {
         Post post = postDao.findPostById(id);
         post.setTitle(title);
         post.setBody(body);
+
         model.addAttribute("post", postDao.save(post));
 
         return "redirect:/posts/" + id;

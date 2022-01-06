@@ -12,7 +12,7 @@ public class Post {
     @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 5000)
     private String body;
 
     public Post() {}

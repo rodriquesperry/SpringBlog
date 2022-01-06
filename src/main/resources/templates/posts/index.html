@@ -12,10 +12,10 @@
     <div class="container">
         <h1>List of All Posts</h1>
         <div th:each="post : ${posts}">
-            <h2 th:text="${post.title}"></h2>
-            <h4 th:text="${post.body}"></h4>
+            <h2 th:text="${post.title}" class="title"></h2>
+            <h4 th:text="${post.body}" class="postBody"></h4>
             <form th:action="@{'posts/' + ${post.id}}">
-                <button>Show Post</button>
+                <button>Read More</button>
             </form>
             <br>
         </div>
@@ -24,5 +24,7 @@
         </div>
         <button>Create Post</button>
     </div>
+
+<!--    <div th:include="/partials/scripts.html :: scripts"></div>-->
 </body>
 </html>
