@@ -1,6 +1,7 @@
 package com.codeup.springblog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -18,6 +19,9 @@ public class User {
 
     @Column(nullable = false)
     private long password;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Post> posts;
 
     public User() {}
 
