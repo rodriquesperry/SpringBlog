@@ -3,6 +3,7 @@ package com.codeup.springblog.controllers;
 import com.codeup.springblog.daos.PostRepository;
 import com.codeup.springblog.daos.UserRepository;
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -66,14 +67,21 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String createPostForm() {
-        return "View the form for creating posts!";
+    public String createPostForm(Model model) {
+        model.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String createPost() {
-        return null;
+    public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, Model model) {
+        User user = new User("rod1", "rod2@gmail.com","rodpw");
+        userDao.save(user);
+        Post post = new Post();
+
+        post.setUser(user);
+        post.setTitle(title);
+        post.setBody(body);
+        postDao.save(post);
+        return "redirect:/posts";
     }
 }

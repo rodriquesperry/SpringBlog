@@ -22,7 +22,7 @@
         <div th:if="${hasPost}">
             <h2>There are no posts!!</h2>
         </div>
-        <button>Create Post</button>
+        <button th:action="@{posts/create}">Create Post</button>
     </div>
 
 <!--    <div th:include="/partials/scripts.html :: scripts"></div>-->

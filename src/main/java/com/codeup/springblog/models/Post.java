@@ -1,5 +1,7 @@
 package com.codeup.springblog.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,7 +18,8 @@ public class Post {
     private String body;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Post() {}
@@ -28,6 +31,18 @@ public class Post {
     public Post(String title) {
 //        this.id = id;
         this.title = title;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Post(String title, String body) {
