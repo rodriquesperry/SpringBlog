@@ -48,8 +48,6 @@ public class PostController {
         model.addAttribute("post", postDao.findPostById(id));
         Post post = postDao.findPostById(id);
         model.addAttribute("postToEdit", post);
-        System.out.println("post.getTitle() = " + post.getTitle());
-        System.out.println("post.getBody() = " + post.getBody());
         return "posts/edit";
     }
 

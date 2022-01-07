@@ -8,17 +8,19 @@
 
 <body>
     <div th:include="partials/navbar.html :: navbar"></div>
+    <div th:include="partials/header.html :: header"></div>
 <!-- hasPost is a boolean value set in the  PostController that checks if findAll() is empty -->
-    <div class="container">
-        <h1>List of All Posts</h1>
+    <div class="container-fluid">
+        <h3>Most Recent Posts</h3>
+        <hr>
         <div th:each="post : ${posts}">
             <h2 th:text="${post.title}" class="title"></h2>
             <h4 th:text="${post.body}" class="postBody"></h4>
-            <form th:action="@{'posts/' + ${post.id}}">
-                <button>Read More</button>
-            </form>
+<!--            <form th:action="@{'posts/' + ${post.id}}">-->
+<!--                <button>Read More</button>-->
+<!--            </form>-->
 
-            <a th:href="'/posts/' + ${post.id}">Look at post</a>
+            <a th:href="'/posts/' + ${post.id}">...Read More</a>
             <br>
         </div>
         <div th:if="${hasPost}">
@@ -27,9 +29,7 @@
         <form th:action="@{/posts/create}">
             <button>Create Post</button>
         </form>
-
     </div>
-
-<!--    <div th:include="/partials/scripts.html :: scripts"></div>-->
+    <th:block th:include="partials/scripts.html :: js"></th:block>
 </body>
 </html>

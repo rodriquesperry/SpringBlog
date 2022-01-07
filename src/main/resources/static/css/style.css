@@ -1,8 +1,15 @@
 body {
-    font-family: 'Josefin Slab', serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#navbar-brand {
+    color: red;
+}
+
+.container-fluid {
+    padding: 0 3rem;
 }
 
 .postBody {
-    font-family: 'Montserrat', sans-serif;
-
+    font-family: 'Josefin Slab', serif;
 }

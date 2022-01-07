@@ -6,18 +6,16 @@
 </head>
 <body>
     <div th:include="partials/navbar.html :: navbar"></div>
-    <div class="container">
+    <div class="container-fluid">
         <h2 th:text="${post.title}" class="title"></h2>
         <h4 th:text="${post.body}" class="postBody"></h4>
-        <p th:text="${post.getUser().getEmail()}"></p>
+        Post written by:
+        <span th:text="${post.getUser().getEmail()}"></span>
         <form th:action="@{/posts/{id}/edit(id=${post.id})}">
             <button name="edit">Edit</button>
         </form>
         <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
             <button name="delete" th:value="${post.id}" type="submit">Delete</button>
-        </form>
-        <form action="/posts">
-            <button name="return" type="submit">Show All Posts</button>
         </form>
     </div>
 </body>
