@@ -8,14 +8,14 @@
     <div th:include="partials/navbar.html :: navbar"></div>
     <div class="container">
         <h1>This is where we edit the post</h1>
-        <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="post">
+        <form th:action="@{/posts/{id}/edit(id=${editPost.id})}" th:method="post" th:object="${editPost}">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input th:value="${postToEdit.getTitle()}" type="text" class="form-control" name="title" id="title" required>
+                <input th:value="${editPost.getTitle()}" type="text" class="form-control" th:field="*{title}" id="title" required>
             </div>
             <div class="mb-3">
                 <label for="body">Body</label>
-                <textarea class="form-control" id="body" name="body" th:text="${postToEdit.getBody()}" required></textarea>
+                <textarea class="form-control" id="body" th:field="*{body}" th:text="${editPost.getBody()}" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
