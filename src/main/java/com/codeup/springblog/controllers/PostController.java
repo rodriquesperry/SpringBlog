@@ -1,18 +1,28 @@
 package com.codeup.springblog.controllers;
 
+import antlr.StringUtils;
 import com.codeup.springblog.daos.PostRepository;
 import com.codeup.springblog.daos.UserRepository;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 @Controller
 public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+
+    @Value("${file-upload-path}")
+    private String uploadPath;
 
     public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
@@ -73,14 +83,24 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post) {
-//        User user = new User("rod1", "rod2@gmail.com","rodpw");
-//        userDao.save(user);
-//        Post post = new Post();
+    public String createPost(@ModelAttribute Post post, @RequestParam("image") MultipartFile uploadedFile, Model model) throws IOException {
 
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+
+        try {
+            System.out.println("uploadedFile.getName() = " + uploadedFile.getOriginalFilename());
+            uploadedFile.transferTo(destinationFile);
+            model.addAttribute("message", "File successfully uploaded!");
+
+            } catch (IOException e) {
+            e.printStackTrace();
+        }
         post.setUser(userDao.findUserById(1));
-
         postDao.save(post);
+
+
         return "redirect:/posts";
     }
 }

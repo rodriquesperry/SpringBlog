@@ -29,10 +29,6 @@ public class User {
         this.id = id;
     }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
@@ -50,13 +46,15 @@ public class User {
         return posts;
     }
 
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(long id) {this.id = id;}
 
     public String getUsername() {
         return username;

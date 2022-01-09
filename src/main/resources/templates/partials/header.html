@@ -8,8 +8,14 @@
     <div th:fragment="header">
         <div class="jumbotron jumbotron-fluid">
             <div class="container-fluid">
+
                 <h1 class="display-4">Welcome to Spring Blog!</h1>
                 <p class="lead ml-2 postBody">My first blog built using the Spring framework.</p>
+            </div>
+            <div>
+                <form th:action="@{/posts/create}">
+                    <button>Create Post</button>
+                </form>
             </div>
         </div>
     </div>
