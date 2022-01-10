@@ -5,6 +5,7 @@ import com.codeup.springblog.daos.PostRepository;
 import com.codeup.springblog.daos.UserRepository;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
+import com.codeup.springblog.services.EmailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,13 +21,16 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-    @Value("${file-upload-path}")
-    private String uploadPath;
+//    @Value("${file-upload-path}")
+//    private String uploadPath;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
-        this.userDao = userDao;}
+        this.userDao = userDao;
+        this.emailService = emailService;
+    }
 
     @GetMapping("/posts")
     public String postIndex(Model model) {
@@ -83,21 +87,28 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post, @RequestParam("image") MultipartFile uploadedFile, Model model) throws IOException {
+    public String createPost(@ModelAttribute Post post
+//            , @RequestParam("image") MultipartFile uploadedFile,
+//                             Model model
+    )  {
 
-        String filename = uploadedFile.getOriginalFilename();
-        String filepath = Paths.get(uploadPath, filename).toString();
-        File destinationFile = new File(filepath);
-
-        try {
-            System.out.println("uploadedFile.getName() = " + uploadedFile.getOriginalFilename());
-            uploadedFile.transferTo(destinationFile);
-            model.addAttribute("message", "File successfully uploaded!");
-
-            } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        String filename = uploadedFile.getOriginalFilename();
+//        String filepath = Paths.get(uploadPath, filename).toString();
+//        File destinationFile = new File(filepath);
+//
+//        try {
+//            System.out.println("uploadedFile.getName() = " + uploadedFile.getOriginalFilename());
+//            uploadedFile.transferTo(destinationFile);
+//            model.addAttribute("message", "File successfully uploaded!");
+//
+//            } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         post.setUser(userDao.findUserById(1));
+
+        String emailSubject = post.getUser().getUsername() + ", Your post titled: " + post.getTitle() + " has been created";
+        String emailBody = "Congrats!-your latest blog post is up and ready to view on your blogging website. It read: " + post.getBody();
+        emailService.prepareAndSend(post, emailSubject, emailBody);
         postDao.save(post);
 
 

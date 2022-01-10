@@ -14,7 +14,7 @@
         <h3>Most Recent Posts</h3>
         <hr>
         <div th:each="post : ${posts}">
-            <img th:src="${post.getImages()}" alt="">
+<!--            <img th:src="${post.getImages()}" alt="">-->
             <h2 th:text="${post.title}" class="title"></h2>
             <h4 th:text="${post.body}" class="postBody"></h4>
 
