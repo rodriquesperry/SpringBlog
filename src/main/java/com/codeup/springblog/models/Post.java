@@ -19,10 +19,6 @@ public class Post {
     @Column(nullable = false, length = 5000)
     private String body;
 
-//    @Column(length = 500)
-//    @Value("${file-upload-path}")
-//    private String images;
-
     @ManyToOne
     private User user;
 
@@ -34,8 +30,6 @@ public class Post {
         this.title = title;
         this.body = body;
     }
-
-//    public String getImages() {return images;}
 
     public User getUser() {
         return user;
@@ -50,8 +44,6 @@ public class Post {
     public String getBody() {
         return body;
     }
-
-//    public void setImages(String image) {this.images = images;}
 
     public void setId(int id) {this.id = id;}
 
